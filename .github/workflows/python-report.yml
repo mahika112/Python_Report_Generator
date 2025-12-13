@@ -1,0 +1,27 @@
+name: Python Report Generator CI/CD
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  generate-report:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Run Report Script
+        run: python report.py
+
+      - name: Upload Report Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: python-report
+          path: report.txt
