@@ -4,6 +4,11 @@ on:
   push:
     branches: ["main"]
 
+  workflow_dispatch:
+
+  schedule:
+    - cron: "0 3 * * *"   # Runs daily at 8:30 AM IST
+
 jobs:
   generate-report:
     runs-on: ubuntu-latest
@@ -25,3 +30,4 @@ jobs:
         with:
           name: python-report
           path: report.txt
+
